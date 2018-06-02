@@ -1,4 +1,4 @@
-# HDU_AI_Intro_Project
+# HDU_Course_AI_Intro_Assignment
 
 - 训练数据集：<https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data>
   
