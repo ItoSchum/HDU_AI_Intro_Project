@@ -1,7 +1,7 @@
 # HDU_Course_AI_Intro_Assignment
 
-- 训练数据集：<https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data>
-  
+- 训练数据集：[Breast Cancer Wisconsin (Diagnostic) Data Set] (https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29)
+
 
 ## LogisticRegression (逻辑斯蒂回归 分类器)
 
@@ -68,3 +68,4 @@ GNB.predict(X_test)
 GNB.score(X_test,y_test)
 ```
 Out: 0.9766081871345029
+
