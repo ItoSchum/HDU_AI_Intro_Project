@@ -1,71 +1,154 @@
-# HDU_Course_AI_Intro_Assignment
+# HDU Course: AI Intro - Assignment
 
 - 训练数据集：[Breast Cancer Wisconsin (Diagnostic) Data Set] (https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29)
 
+## Data Analysis
 
-## LogisticRegression (逻辑斯蒂回归 分类器)
+- **RangeIndex:** 569 entries, 0 to 568
+- **Data Columns:** total 32 columns
+- **Data Types:** float64(30), int64(1), object(1)
+- **Memory Usage:** 142.3+ KB
 
-```
-from sklearn.linear_model import LogisticRegression
+- **Attribute Info：**
+	1. 身份证号码
+	- 诊断（M =恶性，B =良性）
+	- 3-32为每个细胞核计算十个实值特征：
+		- a）半径（从中心到周边点的距离的平均值）
+		- b）纹理（灰度值的标准偏差）
+		- c）周界
+		- d）区域
+		- e）光滑度（半径长度的局部变化）
+		- f）紧凑性（周长^ 2 /面积 - 1.0）
+		- g）凹度（轮廓凹部的严重程度）
+		- h）凹点（轮廓的凹入部分的数量）
+		- i）对称
+		- j）分形维数（“海岸线近似” - 1）
+		
+		- 对每个数据分别求平均值，标准误差，“最差”或最大，产生30个特征。
+		- 所有功能值都用四位有效数字重新编码。
 
-LR = LogisticRegression()
-LR.fit(X_train, y_train)
-LR.predict(X_test)
-LR.score(X_test,y_test)
-```
-Out: 0.9883040935672515
+## Data Visualization
+- **相似相关性热力图**
+	- *Correlation Features:*
+		- Compactness_mean, concavity_mean, concave points_mean
+		- radius_se, perimeter_se, area_se
+		- radius_worst, perimeter_worst, area_worst
+		- Compactness_worst, concavity_worst, concave points_worst
+		- Compactness_se, concavity_se, concave points_se
+		- texture_mean, texture_worst
+		- area_worst, area_mean 
+		
+- **加入分类的相关性热力图**
+	- *New Correlation Features:*
+		- 32 to 16 dimension
+		- concavity_mean, concave points_mean, concave points_worst
+		- compactness_mean, compactness_worst, concavity_worst
+		- perimeter_mean, radius_mean, area_mean, perimeter_worst, radius_worst, area_worst
+		- area_se, radius_se, perimeter_se
+		- texture_mean, texture_worst
+		- texture_se, smoothness_se, symmetry_se
+		- fractal_dimesion_worst
+		- smoothness_mean
+		- smoothness_worst
+		- symmetry_mean
+		- symmetry_worst
+		- concave points_se
+		- compactness_se
+		- concavity_se
+		- fractal_dimession_mean
+		- fractal_dimession_se
 
-- **结论：** 通过比较，逻辑斯蒂模型比随机梯度下降模型在测试集上表现有更高的准确性，因为逻辑斯蒂采用解析的方式精确计算模型参数，而随机梯度下降采用估计值
-- **特点分析：** 逻辑斯蒂对参数的计算采用精确解析的方法，计算时间长但是模型性能高，随机梯度下降采用随机梯度上升算法估计模型参数，计算时间短但产出的模型性能略低，一般而言，对于训练数据规模在10万量级以上的数据，考虑到时间的耗用，推荐使用随机梯度算法
+## Classification
+
+Diagnosis    | Amount
+------------ | -------------
+B            | 268
+M            | 158
+
+### 32 features
+
+- **Logistic Regression**
+	- *Original*
+	
+            | Precision | Recall   | f1-Score  | Support
+------------|-----------|----------|-----------|---------
+          B | 0.94624   | 0.98876  | 0.96703   |  89
+          M | 0.98000   | 0.90741  | 0.94231   |  54
+Avg / Total | 0.95899   | 0.95804  | 0.95770   |  143
+
+	- *Depth Optimized* 
+	>Accuracy is maximum at depth 100 and accuracy 0.979
+	
+            | Precision | Recall   | f1-Score  | Support
+------------|-----------|----------|-----------|---------
+          B |   0.96739 | 1.00000  | 0.98343   |  89
+          M |   1.00000 | 0.94444  | 0.97143   |  54
+Avg / Total |   0.97971 | 0.97902  | 0.97890   |  143
+ 
+- **kNN**
+> Accuracy is max in Sample 10 and accuracy 0.9301
+
+            | Precision | Recall   | f1-Score  | Support
+------------|-----------|----------|-----------|---------
+          B |   0.92473 |  0.96629 |  0.94505  |      89
+          M |   0.94000 |  0.87037 |  0.90385  |      54
+avg / total |   0.93050 |  0.93007 |  0.92949  |     143
 
 
-## SGDClassifier (梯度下降 分类器)
 
-```
-from sklearn.linear_model import SGDClassifier
-```
-```
-SGD = SGDClassifier(loss='hinge', penalty='l2', alpha=0.001, l1_ratio=0.15, fit_intercept=True, max_iter=None, tol=None, shuffle=True, verbose=0, epsilon=0.1, n_jobs=1, random_state=None, learning_rate='optimal', eta0=0.0, power_t=0.5, class_weight=None, warm_start=False, average=False, n_iter=None)
-SGD.fit(X_train,y_train)
-SGD.predict(X_test)
-SGD.score(X_test,y_test)
-```
-Out: 0.9824561403508771
+- **Gaussian Naive Bayes**
 
-## LinearRegression (线性回归 分类器)
-```
-from sklearn.linear_model import LinearRegression
-```
-```
-LR2 = LinearRegression(fit_intercept=True, normalize=False, copy_X=True, n_jobs=1)
-LR2.fit(X_train,y_train)
-LR2.predict(X_test)
-LR2.score(X_test,y_test)
-```
-Out: 0.8739645029687063
+            | Precision | Recall   | f1-Score  | Support
+------------|-----------|----------|-----------|---------
+          B |   0.92632 |  0.98876 |  0.95652  |      89
+          M |   0.97917 |  0.87037 |  0.92157  |      54
+Avg / Total |   0.94627 |  0.94406 |  0.94332  |     143
+
+### 16 features
+
+- *Drop Attributes:*
+	- concave points_mean
+	- concave points_worst 
+	- compactness_worst
+	- concavity_worst
+	- radius_mean
+	- area_mean
+	- perimeter_worst
+	- radius_worst
+	- area_worst
+	- radius_se 
+	- perimeter_se
+	- texture_worst 
+	- smoothness_se 
+	- symmetry_se
+
+- **Logistic Regression**
+> Accuracy is maximum at depth 1000 and accuracy 0.986
+
+            | Precision | Recall   | f1-Score  | Support
+------------|-----------|----------|-----------|---------
+          B |   0.97802 |  1.00000 |  0.98889  |      89
+          M |   1.00000 |  0.96296 |  0.98113  |      54
+Avg / Total |   0.98632 |  0.98601 |  0.98596  |     143
+
+- **kNN**
+> Accuracy is max in Sample 5 and accuracy 0.9161
+
+            | Precision | Recall   | f1-Score  | Support
+------------|-----------|----------|-----------|---------
+          B |   0.91398 |  0.95506 |  0.93407  |      89
+          M |   0.92000 |  0.85185 |  0.88462  |      54
+Avg / Total |   0.91625 |  0.91608 |  0.91539  |     143
+
+- **Random Forest**
+
+            | Precision | Recall   | f1-Score  | Support
+------------|-----------|----------|-----------|---------
+          B |   0.94624 |  0.98876 |  0.96703  |      89
+          M |   0.98000 |  0.90741 |  0.94231  |      54
+Avg / Total |   0.95899 |  0.95804 |  0.95770  |     143
 
 
-## KNeighborsClassifier (k近邻 分类器)
-```
-from sklearn.neighbors import KNeighborsClassifier
-```
-```
-KNN = KNeighborsClassifier(n_neighbors=5, weights='uniform', algorithm='auto', leaf_size=30, p=2, metric='minkowski', metric_params=None, n_jobs=1, **kwargs)
-KNN.fit(X_train,y_train)
-KNN.predict(X_test)
-KNN.score(X_test,y_test)
-```
-Out: 0.9883040935672515
-
-## GaussianNB (朴素贝叶斯 分类器)
-```
-from sklearn.naive_bayes import GaussianNB
-```
-```
-GNB = GaussianNB(priors=None)
-GNB.fit(X_train,y_train)
-GNB.predict(X_test)
-GNB.score(X_test,y_test)
-```
-Out: 0.9766081871345029
-
+## Dimension Reduction* (Unfinished)
+- **PCA**
+	- *Image:* K-means clustering on the digits dataset (PCA-reduced data)
