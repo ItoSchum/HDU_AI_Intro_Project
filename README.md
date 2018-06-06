@@ -70,7 +70,7 @@ M            | 158
 - **Logistic Regression**
 	- *Original*
 	
-            | Precision | Recall   | f1-Score  | Support
+Item        | Precision | Recall   | f1-Score  | Support
 ------------|-----------|----------|-----------|---------
           B | 0.94624   | 0.98876  | 0.96703   |  89
           M | 0.98000   | 0.90741  | 0.94231   |  54
@@ -79,7 +79,7 @@ Avg / Total | 0.95899   | 0.95804  | 0.95770   |  143
 	- *Depth Optimized* 
 	>Accuracy is maximum at depth 100 and accuracy 0.979
 	
-            | Precision | Recall   | f1-Score  | Support
+Item        | Precision | Recall   | f1-Score  | Support
 ------------|-----------|----------|-----------|---------
           B |   0.96739 | 1.00000  | 0.98343   |  89
           M |   1.00000 | 0.94444  | 0.97143   |  54
@@ -88,7 +88,7 @@ Avg / Total |   0.97971 | 0.97902  | 0.97890   |  143
 - **kNN**
 > Accuracy is max in Sample 10 and accuracy 0.9301
 
-            | Precision | Recall   | f1-Score  | Support
+Item        | Precision | Recall   | f1-Score  | Support
 ------------|-----------|----------|-----------|---------
           B |   0.92473 |  0.96629 |  0.94505  |      89
           M |   0.94000 |  0.87037 |  0.90385  |      54
@@ -98,7 +98,7 @@ avg / total |   0.93050 |  0.93007 |  0.92949  |     143
 
 - **Gaussian Naive Bayes**
 
-            | Precision | Recall   | f1-Score  | Support
+Item        | Precision | Recall   | f1-Score  | Support
 ------------|-----------|----------|-----------|---------
           B |   0.92632 |  0.98876 |  0.95652  |      89
           M |   0.97917 |  0.87037 |  0.92157  |      54
@@ -125,7 +125,7 @@ Avg / Total |   0.94627 |  0.94406 |  0.94332  |     143
 - **Logistic Regression**
 > Accuracy is maximum at depth 1000 and accuracy 0.986
 
-            | Precision | Recall   | f1-Score  | Support
+Item        | Precision | Recall   | f1-Score  | Support
 ------------|-----------|----------|-----------|---------
           B |   0.97802 |  1.00000 |  0.98889  |      89
           M |   1.00000 |  0.96296 |  0.98113  |      54
@@ -134,7 +134,7 @@ Avg / Total |   0.98632 |  0.98601 |  0.98596  |     143
 - **kNN**
 > Accuracy is max in Sample 5 and accuracy 0.9161
 
-            | Precision | Recall   | f1-Score  | Support
+Item        | Precision | Recall   | f1-Score  | Support
 ------------|-----------|----------|-----------|---------
           B |   0.91398 |  0.95506 |  0.93407  |      89
           M |   0.92000 |  0.85185 |  0.88462  |      54
@@ -142,7 +142,7 @@ Avg / Total |   0.91625 |  0.91608 |  0.91539  |     143
 
 - **Random Forest**
 
-            | Precision | Recall   | f1-Score  | Support
+Item        | Precision | Recall   | f1-Score  | Support
 ------------|-----------|----------|-----------|---------
           B |   0.94624 |  0.98876 |  0.96703  |      89
           M |   0.98000 |  0.90741 |  0.94231  |      54
