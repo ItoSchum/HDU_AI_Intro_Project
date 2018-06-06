@@ -29,15 +29,7 @@
 
 ## Data Visualization
 - **相似相关性热力图**
-	- *Correlation Features:*
-		- Compactness_mean, concavity_mean, concave points_mean
-		- radius_se, perimeter_se, area_se
-		- radius_worst, perimeter_worst, area_worst
-		- Compactness_worst, concavity_worst, concave points_worst
-		- Compactness_se, concavity_se, concave points_se
-		- texture_mean, texture_worst
-		- area_worst, area_mean 
-		
+
 - **加入分类的相关性热力图**
 	- *New Correlation Features:*
 		- 32 to 16 dimension
